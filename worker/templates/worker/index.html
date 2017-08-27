@@ -1,0 +1,25 @@
+{% if all_skills %}
+  <h3>Here are all my skills: </h3>
+  <ul>
+    {% for sk in all_skills %}
+      <li><a href="{% url 'worker:detail' sk.skill_name%}">{{ sk.skill_name }}</a></li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <h3>You don't have any skills</h3>
+{% endif %}
+
+
+
+
+
+{% if all_cities %}
+  <h3>Here are all my cities: </h3>
+  <ul>
+    {% for ct in all_cities %}
+      <li><a href="{% url 'worker:cityDetail' ct.city_name%}">{{ ct.city_name }}</a></li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <h3>You don't have any cities</h3>
+{% endif %}

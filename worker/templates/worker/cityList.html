@@ -1,0 +1,10 @@
+{% if all_cities %}
+  <h3>Here are all my cities: </h3>
+  <ul>
+    {% for ct in all_cities %}
+      <li><a href="{% url 'worker:cityDetail' ct.city_name%}">{{ ct.city_name }}</a></li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <h3>You don't have any cities</h3>
+{% endif %}
