@@ -1,0 +1,18 @@
+<h2>Details for skill: {{ skill_name }} </h2>
+
+<table>
+	<tr>
+		<th>First Name</th>
+		<th>Last Name</th>
+		<th>Locality</th>
+		<th>Skill</th>
+	</tr>
+	{% for row in res2 %}
+		<tr>
+			<td>{{row.fname}}</td>
+			<td>{{row.lname}}</td>
+			<td>{{row.local}}</td>
+			<td>{{row.skill_name}}</td>
+		</tr>
+	{% endfor %}
+</table>

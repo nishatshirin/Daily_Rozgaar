@@ -1,5 +1,5 @@
 {% if all_cities %}
-  <h3>Here are all my cities: </h3>
+  <h3>Here are all the workers sorted by cities: </h3>
   <ul>
     {% for ct in all_cities %}
       <li><a href="{% url 'worker:cityDetail' ct.city_name%}">{{ ct.city_name }}</a></li>

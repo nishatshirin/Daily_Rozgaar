@@ -1,0 +1,10 @@
+{% if all_skills %}
+  <h3>Here are all the workers sorted by skills: </h3>
+  <ul>
+    {% for sk in all_skills %}
+      <li><a href="{% url 'worker:skillDetail' sk.skill_name %}">{{ sk.skill_name }}</a></li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <h3>You don't have any workers</h3>
+{% endif %}

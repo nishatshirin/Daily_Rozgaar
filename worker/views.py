@@ -19,14 +19,34 @@ def index(request):
 
 def skillList(request):
 	all_skills = skill.objects.all()
-	html = ''
-	for sk in all_skills:
-		url = '/worker/skill/'+str(sk.skill_name)+'/'
-		html += '<a href="' + url + '">' + sk.skill_name + '</a><br>'
-	return HttpResponse(html)
+	template = loader.get_template('worker/skillList.html')
+	context = {
+		'all_skills' : all_skills,
+	}
+	return HttpResponse(template.render(context,request))
 
-def detail(request,skill_name):
-	return HttpResponse("<h2>Details for skill: "+str(skill_name)+"</h2>")
+#changed detail to skill Detail
+def skillDetail(request,skill_name):
+	sk = get_object_or_404(skill, skill_name=skill_name)
+	g=rdflib.Graph()
+	g.parse(sk.skill_file)
+	res2 = g.query("""
+	PREFIX nit: <http://127.0.0.1:3333/>
+	SELECT ?fname ?lname ?local ?skill_name
+	WHERE{
+	    ?x nit:hasFirstName ?fname.
+	    ?x nit:hasLastName ?lname.
+	    ?x nit:hasLocality ?local.
+	    ?x nit:hasSkill ?skill_name, "Tutor"
+	}
+    """)
+	
+	template = loader.get_template('worker/skillDetail.html')
+	context = {
+		'skill_name' : skill_name,
+		'res2' : res2,
+	}
+	return HttpResponse(template.render(context,request))
 
 def cityList(request):
 	all_cities = city.objects.all()
