@@ -32,12 +32,13 @@ def skillDetail(request,skill_name):
 	g.parse(sk.skill_file)
 	res2 = g.query("""
 	PREFIX nit: <http://127.0.0.1:3333/>
-	SELECT ?fname ?lname ?local ?skill_name
+	SELECT ?fname ?lname ?local ?skill_name ?sub_skill
 	WHERE{
 	    ?x nit:hasFirstName ?fname.
 	    ?x nit:hasLastName ?lname.
 	    ?x nit:hasLocality ?local.
-	    ?x nit:hasSkill ?skill_name, "Tutor"
+	    ?x nit:hasSubSkill ?sub_skill.
+	    ?x nit:hasSkill """+"'"+skill_name+"'"+"""
 	}
     """)
 	

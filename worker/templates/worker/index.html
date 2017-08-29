@@ -1,6 +1,6 @@
 
 {% if all_skills %}
-  <h3>Here are all my skills: </h3>
+  <h3>Here are all skills for workers You are searching for: </h3>
   <ul>
     {% for sk in all_skills %}
       <li><a href="{% url 'worker:skillDetail' sk.skill_name%}">{{ sk.skill_name }}</a></li>
@@ -15,7 +15,7 @@
 
 
 {% if all_cities %}
-  <h3>Here are all my cities: </h3>
+  <h3>Here are all cities we have data of: </h3>
   <ul>
     {% for ct in all_cities %}
       <li><a href="{% url 'worker:cityDetail' ct.city_name%}">{{ ct.city_name }}</a></li>
